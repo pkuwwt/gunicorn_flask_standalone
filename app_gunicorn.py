@@ -1,4 +1,3 @@
-from app import app
 import gunicorn.app.base
 from gunicorn.config import Config
 import multiprocessing
@@ -39,12 +38,13 @@ class StandaloneApplication(gunicorn.app.base.BaseApplication):
     def load(self):
         return self.application
 
-def run():
+def run(app):
     """
     run service
     """
     StandaloneApplication(app, options=get_options()).run()
 
 if __name__ == "__main__":
-    run()
+    from app import app
+    run(app)
 
