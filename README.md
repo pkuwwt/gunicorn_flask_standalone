@@ -17,9 +17,9 @@ dist/app_gunicorn/app_gunicorn --bind=127.0.0.1:8000 --workers=2
 
 `127.0.0.1:8000` is the default binding address, and the default number of workers depends on the hardware (`2 * NUM_CPU + 1`).
 
-The directory `dist/app_gunicorn`, which is only depends on a few system libs,  can be deploy to any machine with the same (Linux) operating system distribution.
+The directory `dist/app_gunicorn`, which is only depends on a few system libs,  can be deployed to any machine with the same (Linux) operating system distribution.
 
-The command line options are exactly the same with `gunicorn` itself. So the help is avaiable:
+The command line options are exactly the same with `gunicorn` itself. So the help is available:
 ```
 dist/app_gunicorn/app_gunicorn -h
 ```
