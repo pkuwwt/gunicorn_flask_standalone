@@ -1,9 +1,11 @@
 
 # A sample Flask app deployed by gunicorn and pyinstaller
 
-PyInstaller is great to bundle the python application as a single standalone executable. Then what about flask application? Flask applications are often distributed as modules, which rely on other production web servers like `uwsgi`.
+PyInstaller is great to bundle a python application as a single standalone executable, so that it is more convienent to deploy and to dysfunction the source code.
 
-Fortunately, `gunicorn` is a python implementation of uwsgi. And this project uses gunicorn to wrap flask as a standalone application, which is then bundled by PyInstaller.
+But what about flask application? Flask applications are often distributed as modules, which rely on other production web servers like `uwsgi`.
+
+Fortunately, there is a python implementation of uwsgi: `gunicorn`. And this project uses gunicorn to wrap flask as a standalone application, which is then bundled by PyInstaller.
 
 ## Usage
 
