@@ -3,13 +3,16 @@ from gunicorn.config import Config
 import multiprocessing
 import sys
 
+
 def number_of_workers():
     return (multiprocessing.cpu_count() * 2) + 1
+
 
 def get_options_from_cli():
     parser = Config().parser()
     options = parser.parse_args(sys.argv)
     return options
+
 
 def get_options():
     options = get_options_from_cli()
@@ -20,13 +23,14 @@ def get_options():
         result[key] = getattr(options, key)
     return result
 
+
 class StandaloneApplication(gunicorn.app.base.BaseApplication):
     """
     Custom application
     """
-    def __init__(self, app, options=None):
+
+    def __init__(self, options=None):
         self.options = options or {}
-        self.application = app
         super(StandaloneApplication, self).__init__()
 
     def load_config(self):
@@ -36,15 +40,9 @@ class StandaloneApplication(gunicorn.app.base.BaseApplication):
             self.cfg.set(key.lower(), value)
 
     def load(self):
-        return self.application
+        from app import app
+        return app
 
-def run(app):
-    """
-    run service
-    """
-    StandaloneApplication(app, options=get_options()).run()
 
 if __name__ == "__main__":
-    from app import app
-    run(app)
-
+    StandaloneApplication(options=get_options()).run()
